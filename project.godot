@@ -32,7 +32,7 @@ window/stretch/mode="2d"
 
 [gui]
 
-theme/custom_font="res://fonts/new1.tres"
+theme/custom_font="res://fonts/5x5UC.tres"
 
 [input]
 
