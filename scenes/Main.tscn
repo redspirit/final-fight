@@ -15,8 +15,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 88.0
-margin_top = 80.0
-margin_right = 160.0
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 176.0
 margin_bottom = 88.0
-text = "hello all"
+text = "привет лизке сосиске
+1 + 2 = 3
+red spirit desu"
