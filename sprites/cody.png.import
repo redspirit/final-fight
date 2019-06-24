@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/kody.png-1c5bfdac2a07db251c9d3c3f8e31c24e.stex"
+path="res://.import/cody.png-708310e8efa80a0d2fc68f96f557b732.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/kody.png"
-dest_files=[ "res://.import/kody.png-1c5bfdac2a07db251c9d3c3f8e31c24e.stex" ]
+source_file="res://sprites/cody.png"
+dest_files=[ "res://.import/cody.png-708310e8efa80a0d2fc68f96f557b732.stex" ]
 
 [params]
 
