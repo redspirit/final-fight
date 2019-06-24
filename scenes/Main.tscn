@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Slums.png" type="Texture" id=2]
 [ext_resource path="res://fonts/6x4UC.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 347.667, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 382.667, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 43 )
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 3, 3 )
@@ -32,3 +41,18 @@ text = "testing"
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 24, 168 )
+
+[node name="Borders" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+
+[node name="down" type="CollisionShape2D" parent="Borders"]
+position = Vector2( 347.667, 213.667 )
+shape = SubResource( 1 )
+
+[node name="up" type="CollisionShape2D" parent="Borders"]
+position = Vector2( 380.333, 149.667 )
+shape = SubResource( 2 )
+
+[node name="left" type="CollisionShape2D" parent="Borders"]
+position = Vector2( -9.66667, 180.667 )
+shape = SubResource( 3 )
