@@ -1,19 +1,6 @@
 extends KinematicBody2D
 
-export (int) var anim_frame = 0
 
-var frames = [
-	#stay
-	Rect2(8, 9, 22, 32),
-	#walk
-	Rect2(80, 10, 15, 31),
-	Rect2(101, 10, 17, 31),
-	Rect2(124, 9, 15, 32),
-	Rect2(146, 10, 17, 31),
-	#beat
-	Rect2(4, 135, 23, 31),
-	Rect2(39, 135, 31, 31)
-]
 var flip = false
 var motionX = 0
 var motionY = 0
@@ -28,40 +15,84 @@ func _ready():
 
 func _physics_process(delta):
 	
-	
 	if Input.is_action_pressed("ui_up"):
 		motionY = -1
-		$anim.play("walk")
 	elif Input.is_action_pressed("ui_down"):
 		motionY = 1
-		$anim.play("walk")
 	else :
 		motionY = 0
 	
 	if Input.is_action_pressed("ui_right"):
-		$anim.play("walk")
 		flip = false
 		motionX = 1
 	elif Input.is_action_pressed("ui_left"):
-		$anim.play("walk")
 		flip = true
 		motionX = -1
-		pass
 	else :
-		if motionY == 0 :
-			$anim.play("stay")
 		motionX = 0
 	
-	$cody.flip_h = flip
-	$cody.region_rect = frames[anim_frame]
+	#$cody.flip_h = flip
 
 	move_and_slide(Vector2(motionX * speedX, motionY * speedY))
 	
+	
+	
+	
+var isHorWalking = false
+var isVerWalking = false
+	
 func _input(event):
 	
+	if event.is_action_pressed("ui_right") :
+		$anim.play("walk-right")
+		isHorWalking = true
+	
+	if event.is_action_released("ui_right") :
+		if !isVerWalking :
+			$anim.play("stay-right")
+		isHorWalking = false
+	
+	###############################################
+	
+	if event.is_action_pressed("ui_left") :
+		$anim.play("walk-left")
+		isHorWalking = true
+	
+	if event.is_action_released("ui_left") :
+		if !isVerWalking :
+			$anim.play("stay-left")
+		isHorWalking = false
+	
+	###############################################
+	
+	if event.is_action_pressed("ui_up") :
+		#$anim.play("walk")
+		isVerWalking = true
+	
+	if event.is_action_released("ui_up") :
+		if !isHorWalking && !isVerWalking :
+			$anim.play("stay")
+			
+		isVerWalking = false
+	
+	#################################################
+	
+	if event.is_action_pressed("ui_down") :
+		#$anim.play("walk")
+		isVerWalking = true
+	
+	if event.is_action_released("ui_down") :
+		if !isHorWalking && !isVerWalking:
+			$anim.play("stay")
+			
+		isVerWalking = false
+
+	#################################################
+	
 	if event.is_action_pressed("ui_accept"):
-		#print("action")
-		anim_frame = 5
-	
-	
-	pass
+		$anim.play("beat-left")
+		
+	if event.is_action_released("ui_accept"):
+		#$anim.play("stay-right")
+		pass
+
