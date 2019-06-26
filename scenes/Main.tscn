@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Slums.png" type="Texture" id=2]
-[ext_resource path="res://fonts/6x4UC.tres" type="DynamicFont" id=3]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/6x4UC.tres" type="DynamicFont" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 347.667, 10 )
@@ -13,6 +13,9 @@ extents = Vector2( 382.667, 10 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 43 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 28 )
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 3, 3 )
@@ -26,33 +29,49 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Slums" type="Sprite" parent="."]
+[node name="World" type="Node2D" parent="."]
+
+[node name="Slums" type="Sprite" parent="World"]
 position = Vector2( 512, 128 )
 texture = ExtResource( 2 )
 vframes = 3
 
-[node name="Label2" type="Label" parent="."]
+[node name="Borders" type="KinematicBody2D" parent="World"]
+
+[node name="down" type="CollisionShape2D" parent="World/Borders"]
+position = Vector2( 347.667, 213.667 )
+shape = SubResource( 1 )
+
+[node name="up" type="CollisionShape2D" parent="World/Borders"]
+position = Vector2( 380.333, 149.667 )
+shape = SubResource( 2 )
+
+[node name="left" type="CollisionShape2D" parent="World/Borders"]
+position = Vector2( -9.66667, 180.667 )
+shape = SubResource( 3 )
+
+[node name="right" type="CollisionShape2D" parent="World/Borders"]
+position = Vector2( 698, 178.667 )
+shape = SubResource( 4 )
+
+[node name="Player" parent="World" instance=ExtResource( 3 )]
+position = Vector2( 24, 168 )
+
+[node name="GUI" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Label2" type="Label" parent="GUI"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 48.0
 margin_bottom = 24.0
-custom_fonts/font = ExtResource( 3 )
-text = "testing"
+custom_fonts/font = ExtResource( 4 )
+text = "position"
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 24, 168 )
-
-[node name="Borders" type="KinematicBody2D" parent="."]
-editor/display_folded = true
-
-[node name="down" type="CollisionShape2D" parent="Borders"]
-position = Vector2( 347.667, 213.667 )
-shape = SubResource( 1 )
-
-[node name="up" type="CollisionShape2D" parent="Borders"]
-position = Vector2( 380.333, 149.667 )
-shape = SubResource( 2 )
-
-[node name="left" type="CollisionShape2D" parent="Borders"]
-position = Vector2( -9.66667, 180.667 )
-shape = SubResource( 3 )
+[node name="pos" type="Label" parent="GUI"]
+margin_left = 52.6667
+margin_top = 8.33333
+margin_right = 68.6667
+margin_bottom = 15.3333
+custom_fonts/font = ExtResource( 4 )
+text = "21"
