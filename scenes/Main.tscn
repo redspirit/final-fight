@@ -37,6 +37,7 @@ texture = ExtResource( 2 )
 vframes = 3
 
 [node name="Borders" type="KinematicBody2D" parent="World"]
+editor/display_folded = true
 
 [node name="down" type="CollisionShape2D" parent="World/Borders"]
 position = Vector2( 347.667, 213.667 )
